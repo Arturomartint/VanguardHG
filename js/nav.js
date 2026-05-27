@@ -40,10 +40,10 @@
         </a>
         <div class="drawer-divider"></div>
         <a href="services.html" class="drawer-item">
-          <div class="drawer-icon"><img src="Icons/Allied health.svg" alt="" class="icon-img" /></div>
+          <div class="drawer-icon"><img src="Icons/Nurse.svg" alt="" class="icon-img" /></div>
           <div class="drawer-labels">
             <span class="drawer-label">Our Services</span>
-            <span class="drawer-sub">Nursing, Support &amp; Allied health</span>
+            <span class="drawer-sub">Nursing &amp; Support</span>
           </div>
         </a>
         <div class="drawer-divider"></div>
