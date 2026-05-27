@@ -42,7 +42,7 @@
 
   --transition: 0.25s ease;
   --font: 'Inter', system-ui, -apple-system, sans-serif;
-  --max-w: 1200px;
+  --max-w: clamp(1200px, 88vw, 1600px);
   --nav-h: 72px;
 
   /* ── Button token system ─────────────────────────────────── */
