@@ -94,7 +94,7 @@
   const formSuccess = document.getElementById('formSuccess');
 
   if (requestForm && formSuccess) {
-    requestForm.addEventListener('submit', function (e) {
+    requestForm.addEventListener('submit', async function (e) {
       e.preventDefault();
       if (!requestForm.checkValidity()) { requestForm.reportValidity(); return; }
 
@@ -103,14 +103,23 @@
       btn.disabled = true;
       btn.textContent = 'Submitting…';
 
-      setTimeout(() => {
-        requestForm.reset();
+      try {
+        const res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(requestForm) });
+        const json = await res.json();
+        if (json.success) {
+          requestForm.reset();
+          formSuccess.hidden = false;
+          formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          setTimeout(() => { formSuccess.hidden = true; }, 7000);
+        } else {
+          alert('Something went wrong. Please email us at info@vanguardhealthgroup.com.au');
+        }
+      } catch {
+        alert('Something went wrong. Please email us at info@vanguardhealthgroup.com.au');
+      } finally {
         btn.disabled = false;
         btn.innerHTML = orig;
-        formSuccess.hidden = false;
-        formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        setTimeout(() => { formSuccess.hidden = true; }, 7000);
-      }, 1200);
+      }
     });
   }
 
@@ -119,7 +128,7 @@
   const applySuccess = document.getElementById('applySuccess');
 
   if (applyForm && applySuccess) {
-    applyForm.addEventListener('submit', function (e) {
+    applyForm.addEventListener('submit', async function (e) {
       e.preventDefault();
       if (!applyForm.checkValidity()) { applyForm.reportValidity(); return; }
 
@@ -128,16 +137,25 @@
       btn.disabled = true;
       btn.textContent = 'Submitting…';
 
-      setTimeout(() => {
-        applyForm.reset();
-        const fl = document.getElementById('fileLabel');
-        if (fl) fl.textContent = 'Upload your resume (PDF, DOC, DOCX)';
+      try {
+        const res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(applyForm) });
+        const json = await res.json();
+        if (json.success) {
+          applyForm.reset();
+          const fl = document.getElementById('fileLabel');
+          if (fl) fl.textContent = 'Upload your resume (PDF, DOC, DOCX)';
+          applySuccess.hidden = false;
+          applySuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          setTimeout(() => { applySuccess.hidden = true; }, 7000);
+        } else {
+          alert('Something went wrong. Please email us at info@vanguardhealthgroup.com.au');
+        }
+      } catch {
+        alert('Something went wrong. Please email us at info@vanguardhealthgroup.com.au');
+      } finally {
         btn.disabled = false;
         btn.innerHTML = orig;
-        applySuccess.hidden = false;
-        applySuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        setTimeout(() => { applySuccess.hidden = true; }, 7000);
-      }, 1200);
+      }
     });
   }
 
