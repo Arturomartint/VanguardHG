@@ -1,5 +1,5 @@
 /* ============================================================
-   VANGUARD HEALTH GROUP — JavaScript
+   VANGUARD HEALTH GROUP: JavaScript
    ============================================================ */
 
 (function () {
@@ -183,7 +183,7 @@
     '<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
 
   document.querySelectorAll('.btn, .nav-cta').forEach(el => {
-    // Skip the spinning-ring CTA — it has its own bespoke interaction
+    // Skip the spinning-ring CTA, which has its own bespoke interaction
     if (el.classList.contains('cta-ring-btn') || el.dataset.hoverInit) return;
     const label = el.textContent.trim();
     el.innerHTML =
