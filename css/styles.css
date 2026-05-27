@@ -1076,8 +1076,9 @@ input, select, textarea { font-family: inherit; }
 .industries-section { background: var(--white); }
 
 .industries-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
 }
 
@@ -1087,6 +1088,7 @@ input, select, textarea { font-family: inherit; }
 }
 
 .industry-card {
+  flex: 0 1 220px;
   background: var(--gray-50);
   border: 1px solid var(--gray-200);
   border-radius: var(--radius-lg);
@@ -1813,15 +1815,13 @@ input, select, textarea { font-family: inherit; }
 }
 
 @media (max-width: 960px) {
-  .commitment-grid--3col,
-  .industries-grid--3col {
+  .commitment-grid--3col {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 560px) {
-  .commitment-grid--3col,
-  .industries-grid--3col {
+  .commitment-grid--3col {
     grid-template-columns: 1fr;
   }
 }
@@ -1888,7 +1888,7 @@ input, select, textarea { font-family: inherit; }
   .btn { width: 100%; min-width: 0; }
   .cta-banner-actions { flex-direction: column; align-items: stretch; }
   .cta-banner-actions .btn { min-width: 0; }
-  .industries-grid { grid-template-columns: 1fr 1fr; }
+  .industry-card { flex: 0 1 calc(50% - .5rem); }
 
   .hero-retro-actions { flex-direction: column; align-items: stretch; }
   .cta-ring-wrap { width: 100%; }
