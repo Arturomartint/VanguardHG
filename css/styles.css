@@ -953,7 +953,7 @@ input, select, textarea { font-family: inherit; }
   inset: 0;
   background: rgba(0,0,0,.55);
   backdrop-filter: blur(4px);
-  z-index: 1000;
+  z-index: 1100;
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
@@ -973,7 +973,8 @@ input, select, textarea { font-family: inherit; }
   box-shadow: 0 24px 64px rgba(0,0,0,.2);
   animation: modalIn .25s ease;
 }
-.bio-modal.is-open { display: block; }
+.bio-modal[open] { display: block; }
+.bio-modal::backdrop { display: none; }
 
 @keyframes modalIn {
   from { opacity: 0; transform: translateY(16px) scale(.98); }
@@ -1571,6 +1572,7 @@ input, select, textarea { font-family: inherit; }
 .form-success p { font-size: .9rem; font-weight: 600; color: var(--green-dark); }
 
 /* ── FILE INPUT ──────────────────────────────────────────── */
+.file-input-wrap { position: relative; }
 .file-input-wrap input[type="file"] {
   position: absolute; opacity: 0; width: .1px; height: .1px; overflow: hidden;
 }

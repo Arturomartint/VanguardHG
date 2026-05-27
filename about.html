@@ -368,7 +368,7 @@
     <div class="footer-bottom">
       <div class="container footer-bottom-inner">
         <p>&copy; 2026 Vanguard Health Group. All rights reserved.</p>
-        <p class="footer-legal"><a href="#">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="#">Terms of Service</a></p>
+        <p class="footer-legal">Privacy Policy <p class="footer-legal"><a href="#">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="#">Terms of Service</a></p>nbsp;<p class="footer-legal"><a href="#">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="#">Terms of Service</a></p>middot;<p class="footer-legal"><a href="#">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="#">Terms of Service</a></p>nbsp; Terms of Service</p>
       </div>
     </div>
   </footer>
@@ -435,16 +435,15 @@
         active = modals[key];
         overlay.removeAttribute('aria-hidden');
         overlay.classList.add('is-open');
-        active.classList.add('is-open');
         document.body.style.overflow = 'hidden';
-        active.querySelector('.bio-modal-close').focus();
+        active.showModal();
       }
 
       function closeModal() {
         if (!active) return;
         overlay.setAttribute('aria-hidden', 'true');
         overlay.classList.remove('is-open');
-        active.classList.remove('is-open');
+        active.close();
         document.body.style.overflow = '';
         active = null;
       }
@@ -459,7 +458,9 @@
 
       overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
 
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+      Object.values(modals).forEach(dialog => {
+        dialog.addEventListener('cancel', (e) => { e.preventDefault(); closeModal(); });
+      });
     })();
   </script>
 </body>

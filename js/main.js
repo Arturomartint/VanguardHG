@@ -8,48 +8,53 @@
   /* ── Navbar: scroll shadow ───────────────────────────────── */
   const navbar = document.getElementById('navbar');
 
-  function onScroll() {
-    navbar.classList.toggle('scrolled', window.scrollY > 10);
+  if (navbar) {
+    function onScroll() {
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   }
 
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
   /* ── Mobile drawer ───────────────────────────────────────── */
-  const navToggle  = document.getElementById('navToggle');
-  const navDrawer  = document.getElementById('navDrawer');
+  const navToggle     = document.getElementById('navToggle');
+  const navDrawer     = document.getElementById('navDrawer');
   const drawerOverlay = document.getElementById('navDrawerOverlay');
   const drawerClose   = document.getElementById('drawerClose');
 
-  function openDrawer() {
-    navDrawer.classList.add('open');
-    drawerOverlay.classList.add('open');
-    navToggle.classList.add('open');
-    navToggle.setAttribute('aria-expanded', 'true');
-    navDrawer.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+  if (navToggle && navDrawer && drawerOverlay && drawerClose) {
+    function openDrawer() {
+      navDrawer.classList.add('open');
+      drawerOverlay.classList.add('open');
+      navToggle.classList.add('open');
+      navToggle.setAttribute('aria-expanded', 'true');
+      navDrawer.setAttribute('aria-hidden', 'false');
+      drawerOverlay.removeAttribute('aria-hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      navDrawer.classList.remove('open');
+      drawerOverlay.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navDrawer.setAttribute('aria-hidden', 'true');
+      drawerOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    navToggle.addEventListener('click', openDrawer);
+    drawerClose.addEventListener('click', closeDrawer);
+    drawerOverlay.addEventListener('click', closeDrawer);
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeDrawer();
+    });
+
+    navDrawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeDrawer);
+    });
   }
-
-  function closeDrawer() {
-    navDrawer.classList.remove('open');
-    drawerOverlay.classList.remove('open');
-    navToggle.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
-    navDrawer.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  navToggle.addEventListener('click', openDrawer);
-  drawerClose.addEventListener('click', closeDrawer);
-  drawerOverlay.addEventListener('click', closeDrawer);
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeDrawer();
-  });
-
-  navDrawer.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeDrawer);
-  });
 
   /* ── Scroll-reveal animation ─────────────────────────────── */
   if ('IntersectionObserver' in window) {
