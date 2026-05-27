@@ -9,12 +9,12 @@
         <h2 id="cta-heading">Ready to get started?</h2>
         <p>Connect with our team to discuss your healthcare workforce needs. We respond within one business day.</p>
         <div class="cta-banner-actions">
-          <span class="cta-ring-wrap">
-            <span class="cta-ring-spin" aria-hidden="true"></span>
+          <div class="cta-ring-wrap">
+            <div class="cta-ring-spin" aria-hidden="true"></div>
             <div class="cta-ring-inner">
               <a href="request.html" class="cta-ring-btn">Request a Service</a>
             </div>
-          </span>
+          </div>
           <a href="work-with-us.html" class="btn btn-outline">Work With Us</a>
         </div>
       </div>
